@@ -68,11 +68,11 @@
 
           <div class="proof-row" aria-label="Indicadores da loja">
             <div>
-              <strong>8</strong>
+              <strong id="proofProductCount">0</strong>
               <span>produtos na vitrine</span>
             </div>
             <div>
-              <strong>4.8</strong>
+              <strong id="proofRating">Novo</strong>
               <span>avaliação média</span>
             </div>
             <div>
@@ -87,13 +87,13 @@
             <span>Destaque da semana</span>
             <span>Prático para a rotina</span>
           </div>
-          <img src="assets/img/product-freshgo.svg" alt="Liquidificador portátil USB 380 ml" />
+          <img id="heroProductImage" src="assets/img/meli-la-logo.png" alt="Produto em destaque" />
           <div class="hero-product">
             <div>
-              <h2>Liquidificador Portátil USB 380 ml</h2>
-              <p>Copo leve, recarregável e prático para bebidas rápidas.</p>
+              <h2 id="heroProductTitle">Produtos selecionados para sua rotina</h2>
+              <p id="heroProductDescription">A vitrine carrega os achadinhos novos cadastrados no CSV.</p>
             </div>
-            <strong>R$ 89,90</strong>
+            <strong id="heroProductPrice">Catálogo atualizado</strong>
           </div>
           <div class="hero-mini-trust">
             <span>Atendimento próximo</span>
@@ -286,7 +286,7 @@
       <div class="modal-backdrop" data-close-modal></div>
       <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="quickTitle">
         <button class="icon-button close modal-close" type="button" data-close-modal aria-label="Fechar"></button>
-        <img id="quickImage" src="assets/img/product-freshgo.svg" alt="Produto em destaque" />
+        <img id="quickImage" src="assets/img/meli-la-logo.png" alt="Produto em destaque" />
         <div class="quick-copy">
           <p class="eyebrow" id="quickSku"></p>
           <h2 id="quickTitle"></h2>
@@ -298,6 +298,45 @@
           <strong class="quick-price" id="quickPrice"></strong>
           <button class="button primary full" id="quickAdd" type="button">Adicionar ao carrinho</button>
         </div>
+      </article>
+    </div>
+
+    <div class="review-view" id="reviewView" aria-hidden="true">
+      <div class="modal-backdrop" data-close-review></div>
+      <article class="review-card" role="dialog" aria-modal="true" aria-labelledby="reviewTitle">
+        <button class="icon-button close modal-close" type="button" data-close-review aria-label="Fechar"></button>
+        <div class="review-copy">
+          <p class="eyebrow">Avaliações</p>
+          <h2 id="reviewTitle">Avaliar produto</h2>
+          <p id="reviewProductName"></p>
+        </div>
+
+        <form class="review-form" id="reviewForm">
+          <input type="hidden" id="reviewProductId" name="productId" />
+          <div class="review-fields">
+            <label>
+              Nota
+              <select name="rating" required>
+                <option value="5">5 - Excelente</option>
+                <option value="4">4 - Muito bom</option>
+                <option value="3">3 - Bom</option>
+                <option value="2">2 - Regular</option>
+                <option value="1">1 - Ruim</option>
+              </select>
+            </label>
+            <label>
+              Nome
+              <input name="name" maxlength="40" placeholder="Cliente" />
+            </label>
+            <label class="wide">
+              Comentário
+              <textarea name="comment" maxlength="240" rows="4" required></textarea>
+            </label>
+          </div>
+          <button class="button primary full" type="submit">Salvar avaliação</button>
+        </form>
+
+        <div class="review-list" id="reviewList" aria-live="polite"></div>
       </article>
     </div>
 
@@ -364,14 +403,36 @@
     </div>
 
     <footer class="site-footer">
-      <div>
+      <div class="footer-brand">
         <img src="assets/img/meli-la-logo.png" alt="" />
         <p>meli.la achadinhos</p>
       </div>
-      <p>
+      <p class="footer-text">
         Achadinhos selecionados com atendimento próximo, pedido acompanhado e
         rastreio enviado após a postagem.
       </p>
+      <div class="footer-seals" aria-label="Selos de confiança">
+        <span class="footer-seal">
+          <i class="seal-icon lock" aria-hidden="true"></i>
+          <strong>Compra segura</strong>
+          <small>Dados conferidos no atendimento</small>
+        </span>
+        <span class="footer-seal">
+          <i class="seal-icon chat" aria-hidden="true"></i>
+          <strong>WhatsApp oficial</strong>
+          <small>Pedido confirmado antes do envio</small>
+        </span>
+        <span class="footer-seal">
+          <i class="seal-icon route" aria-hidden="true"></i>
+          <strong>Rastreio enviado</strong>
+          <small>Acompanhamento após a postagem</small>
+        </span>
+        <span class="footer-seal">
+          <i class="seal-icon check" aria-hidden="true"></i>
+          <strong>Produtos selecionados</strong>
+          <small>Curadoria para compra simples</small>
+        </span>
+      </div>
     </footer>
 
     <script src="assets/js/app.js"></script>

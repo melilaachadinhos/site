@@ -1,133 +1,11 @@
 const storeOrderPhone = "5541984684382";
 
-let products = [
-  {
-    id: "freshgo",
-    name: "Liquidificador Portátil USB 380 ml",
-    category: "Casa",
-    tag: "Portátil",
-    price: 89.9,
-    cost: 42,
-    margin: "53%",
-    rating: 4.9,
-    reviews: 342,
-    sku: "MLA-MAN-FRESHGO-01",
-    image: "assets/img/product-freshgo.svg",
-    description:
-      "Copo leve com carregamento USB para vitaminas, shakes e bebidas rápidas fora de casa."
-  },
-  {
-    id: "glowcare",
-    name: "Escova Facial Elétrica de Silicone",
-    category: "Beleza",
-    tag: "Cuidados",
-    price: 119.9,
-    cost: 56,
-    margin: "53%",
-    rating: 4.8,
-    reviews: 221,
-    sku: "MLA-MAN-GLOWCARE-02",
-    image: "assets/img/product-glowcare.svg",
-    description:
-      "Acessório compacto para limpeza facial, massagem suave e rotina de skincare mais prática."
-  },
-  {
-    id: "flow-bottle",
-    name: "Garrafa Térmica Inox 1L com Alça",
-    category: "Casa",
-    tag: "Dia a dia",
-    price: 79.9,
-    cost: 37,
-    margin: "54%",
-    rating: 4.7,
-    reviews: 418,
-    sku: "MLA-MAN-FLOW-03",
-    image: "assets/img/product-flow-bottle.svg",
-    description:
-      "Modelo com tampa, alça e acabamento fosco para trabalho, estudos, academia e viagem."
-  },
-  {
-    id: "fitbox",
-    name: "Caixa Organizadora Dobrável com Tampa",
-    category: "Organização",
-    tag: "Organização",
-    price: 64.9,
-    cost: 29,
-    margin: "55%",
-    rating: 4.6,
-    reviews: 164,
-    sku: "MLA-MAN-FITBOX-04",
-    image: "assets/img/product-fitbox.svg",
-    description:
-      "Caixa versátil para armário, lavanderia, quarto infantil e pequenos objetos do dia a dia."
-  },
-  {
-    id: "airbeat",
-    name: "Fone Bluetooth Sem Fio com Estojo",
-    category: "Tech",
-    tag: "Bluetooth",
-    price: 99.9,
-    cost: 48,
-    margin: "52%",
-    rating: 4.8,
-    reviews: 536,
-    sku: "MLA-MAN-AIRBEAT-05",
-    image: "assets/img/product-airbeat.svg",
-    description:
-      "Fone compacto com estojo carregador para música, chamadas e uso diário no celular."
-  },
-  {
-    id: "moonmist",
-    name: "Umidificador de Ar USB com LED",
-    category: "Casa",
-    tag: "Ambiente",
-    price: 74.9,
-    cost: 34,
-    margin: "55%",
-    rating: 4.7,
-    reviews: 289,
-    sku: "MLA-MAN-MOONMIST-06",
-    image: "assets/img/product-moonmist.svg",
-    description:
-      "Modelo decorativo para mesa, quarto ou escritório, com luz LED e alimentação via USB."
-  },
-  {
-    id: "magstand",
-    name: "Suporte Magnético 360 para Celular",
-    category: "Tech",
-    tag: "Ajuste 360",
-    price: 54.9,
-    cost: 23,
-    margin: "58%",
-    rating: 4.6,
-    reviews: 193,
-    sku: "MLA-MAN-MAGSTAND-07",
-    image: "assets/img/product-magstand.svg",
-    description:
-      "Suporte ajustável para celular, ideal para mesa, carro, chamadas de vídeo e gravações."
-  },
-  {
-    id: "petflow",
-    name: "Fonte Bebedouro Automático para Pets",
-    category: "Pets",
-    tag: "Pets",
-    price: 149.9,
-    cost: 72,
-    margin: "52%",
-    rating: 4.9,
-    reviews: 147,
-    sku: "MLA-MAN-PETFLOW-08",
-    image: "assets/img/product-petflow.svg",
-    description:
-      "Bebedouro com circulação contínua para manter a água do pet mais atrativa durante o dia."
-  }
-];
+let products = [];
 
-const fallbackProducts = products.map((product) => ({ ...product }));
-const imageBySku = Object.fromEntries(
-  fallbackProducts.map((product) => [product.sku, product.image])
-);
+const fallbackProducts = [];
+const imageBySku = {};
 let productsCsvSignature = "";
+const reviewsStorageKey = "meli-la-product-reviews-v1";
 
 function parseCsv(text) {
   const rows = [];
@@ -239,7 +117,9 @@ function imageFromRow(row) {
     row.foto_produto ||
     "";
   const unsafeImage = /logo|sprite/i.test(csvImage);
-  return unsafeImage ? imageBySku[row.sku] : csvImage || imageBySku[row.sku] || "assets/img/product-freshgo.svg";
+  return safeImageUrl(
+    unsafeImage ? imageBySku[row.sku] : csvImage || imageBySku[row.sku] || "assets/img/meli-la-logo.png"
+  );
 }
 
 function mapCsvProduct(row, index) {
@@ -267,7 +147,7 @@ function mapCsvProduct(row, index) {
         row.preco_fornecedor
     ),
     margin: row.margem_alvo || row.margem || row.margem_percentual || "",
-    rating: parseNumber(row.avaliacao) || 4.8,
+    rating: parseNumber(row.avaliacao),
     reviews: parseNumber(row.pedidos) || 0,
     sku,
     image: imageFromRow(row),
@@ -334,6 +214,18 @@ const quickView = document.querySelector("#quickView");
 const checkoutView = document.querySelector("#checkoutView");
 const manualCheckoutForm = document.querySelector("#manualCheckoutForm");
 const orderResult = document.querySelector("#orderResult");
+const reviewView = document.querySelector("#reviewView");
+const reviewForm = document.querySelector("#reviewForm");
+const reviewList = document.querySelector("#reviewList");
+const reviewProductId = document.querySelector("#reviewProductId");
+const reviewProductName = document.querySelector("#reviewProductName");
+const heroProductImage = document.querySelector("#heroProductImage");
+const heroProductTitle = document.querySelector("#heroProductTitle");
+const heroProductDescription = document.querySelector("#heroProductDescription");
+const heroProductPrice = document.querySelector("#heroProductPrice");
+const proofProductCount = document.querySelector("#proofProductCount");
+const proofRating = document.querySelector("#proofRating");
+const dateFormatter = new Intl.DateTimeFormat("pt-BR");
 
 function money(value) {
   return formatter.format(value);
@@ -346,6 +238,61 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+function safeImageUrl(value) {
+  const url = String(value || "").trim();
+  if (/^(https?:)?\/\//i.test(url) || /^assets\//i.test(url)) return url;
+  return "assets/img/meli-la-logo.png";
+}
+
+function readReviewStore() {
+  try {
+    return JSON.parse(localStorage.getItem(reviewsStorageKey)) || {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function writeReviewStore(store) {
+  try {
+    localStorage.setItem(reviewsStorageKey, JSON.stringify(store));
+  } catch (error) {
+    return false;
+  }
+  return true;
+}
+
+function getProductReviews(productId) {
+  const store = readReviewStore();
+  return Array.isArray(store[productId]) ? store[productId] : [];
+}
+
+function getReviewStats(product) {
+  const userReviews = getProductReviews(product.id);
+  const baseCount = Number(product.reviews) || 0;
+  const baseRating = Number(product.rating) || 0;
+  const baseTotal = baseCount && baseRating ? baseRating * baseCount : 0;
+  const userTotal = userReviews.reduce(
+    (total, review) => total + (Number(review.rating) || 0),
+    0
+  );
+  const count = baseCount + userReviews.length;
+
+  return {
+    rating: count ? (baseTotal + userTotal) / count : 0,
+    count,
+    userCount: userReviews.length
+  };
+}
+
+function formatReviewCount(count) {
+  if (!count) return "Sem avalia\u00e7\u00f5es";
+  return `${count} ${count === 1 ? "avalia\u00e7\u00e3o" : "avalia\u00e7\u00f5es"}`;
+}
+
+function formatRatingLabel(stats) {
+  return stats.count ? `${stats.rating.toFixed(1)} / 5` : "Novo";
 }
 
 function getCategories() {
@@ -378,9 +325,32 @@ function getFilteredProducts() {
   return filtered.sort((a, b) => {
     if (state.sort === "price-asc") return a.price - b.price;
     if (state.sort === "price-desc") return b.price - a.price;
-    if (state.sort === "rating") return b.rating - a.rating;
+    if (state.sort === "rating") return getReviewStats(b).rating - getReviewStats(a).rating;
     return products.indexOf(a) - products.indexOf(b);
   });
+}
+
+function updateStoreHighlights() {
+  if (proofProductCount) proofProductCount.textContent = String(products.length);
+
+  const reviewed = products.map(getReviewStats).filter((stats) => stats.count);
+  if (proofRating) {
+    const totalRating = reviewed.reduce((total, stats) => total + stats.rating, 0);
+    proofRating.textContent = reviewed.length
+      ? (totalRating / reviewed.length).toFixed(1)
+      : "Novo";
+  }
+
+  const featured = products[0];
+  if (!featured) return;
+
+  if (heroProductImage) {
+    heroProductImage.src = safeImageUrl(featured.image);
+    heroProductImage.alt = featured.name;
+  }
+  if (heroProductTitle) heroProductTitle.textContent = featured.name;
+  if (heroProductDescription) heroProductDescription.textContent = featured.description;
+  if (heroProductPrice) heroProductPrice.textContent = money(featured.price);
 }
 
 function renderProducts() {
@@ -401,19 +371,28 @@ function renderProducts() {
 
   productGrid.innerHTML = filteredProducts
     .map(
-      (product) => `
+      (product) => {
+        const stats = getReviewStats(product);
+        const safeId = escapeHtml(product.id);
+        const safeName = escapeHtml(product.name);
+        const safeCategory = escapeHtml(product.category);
+        const safeSku = escapeHtml(product.sku);
+        const safeTag = escapeHtml(product.tag);
+        const safeImage = escapeHtml(safeImageUrl(product.image));
+        const safeDescription = escapeHtml(product.description);
+        return `
         <article class="product-card">
           <div class="product-image">
-            <span class="badge">${product.tag}</span>
-            <img src="${product.image}" alt="${product.name}" />
+            <span class="badge">${safeTag}</span>
+            <img src="${safeImage}" alt="${safeName}" />
           </div>
           <div class="product-body">
-            <span class="product-kicker">${product.category} · ${product.sku}</span>
-            <h3 class="product-title">${product.name}</h3>
-            <p class="product-description">${product.description}</p>
+            <span class="product-kicker">${safeCategory} · ${safeSku}</span>
+            <h3 class="product-title">${safeName}</h3>
+            <p class="product-description">${safeDescription}</p>
             <div class="rating-row">
-              <span>${product.rating.toFixed(1)} / 5</span>
-              <span>${product.reviews} avaliações</span>
+              <span>${formatRatingLabel(stats)}</span>
+              <span>${formatReviewCount(stats.count)}</span>
             </div>
             <div class="price-row">
               <div>
@@ -427,11 +406,13 @@ function renderProducts() {
             </div>
           </div>
           <div class="product-actions">
-            <button class="button primary" type="button" data-add="${product.id}">Adicionar</button>
-            <button class="quick-button" type="button" data-quick="${product.id}" aria-label="Ver detalhes de ${product.name}">Ver</button>
+            <button class="button primary" type="button" data-add="${safeId}">Adicionar</button>
+            <button class="quick-button" type="button" data-quick="${safeId}" aria-label="Ver detalhes de ${safeName}">Ver</button>
+            <button class="quick-button review-button" type="button" data-review="${safeId}" aria-label="Avaliar ${safeName}">Avaliar</button>
           </div>
         </article>
-      `
+      `;
+      }
     )
     .join("");
 }
@@ -484,20 +465,24 @@ function renderCart() {
   cartItems.innerHTML = state.cart
     .map((item) => {
       const product = getCartProduct(item);
+      const safeName = escapeHtml(product.name);
+      const safeSku = escapeHtml(product.sku);
+      const safeImage = escapeHtml(safeImageUrl(product.image));
+      const safeId = escapeHtml(product.id);
       return `
         <article class="cart-item">
-          <img src="${product.image}" alt="${product.name}" />
+          <img src="${safeImage}" alt="${safeName}" />
           <div>
-            <h3>${product.name}</h3>
-            <p>${product.sku}</p>
+            <h3>${safeName}</h3>
+            <p>${safeSku}</p>
             <strong>${money(product.price * item.quantity)}</strong>
             <div class="quantity-row">
               <div class="stepper" aria-label="Quantidade">
-                <button type="button" data-quantity="${product.id}" data-amount="-1">-</button>
+                <button type="button" data-quantity="${safeId}" data-amount="-1">-</button>
                 <span>${item.quantity}</span>
-                <button type="button" data-quantity="${product.id}" data-amount="1">+</button>
+                <button type="button" data-quantity="${safeId}" data-amount="1">+</button>
               </div>
-              <button class="remove-item" type="button" data-remove="${product.id}">Remover</button>
+              <button class="remove-item" type="button" data-remove="${safeId}">Remover</button>
             </div>
           </div>
         </article>
@@ -520,12 +505,14 @@ function closeCart() {
 
 function openQuickView(productId) {
   const product = products.find((item) => item.id === productId);
-  document.querySelector("#quickImage").src = product.image;
+  if (!product) return;
+  const stats = getReviewStats(product);
+  document.querySelector("#quickImage").src = safeImageUrl(product.image);
   document.querySelector("#quickImage").alt = product.name;
   document.querySelector("#quickSku").textContent = product.sku;
   document.querySelector("#quickTitle").textContent = product.name;
   document.querySelector("#quickDescription").textContent = product.description;
-  document.querySelector("#quickRating").textContent = `${product.rating.toFixed(1)} / 5 · ${product.reviews} avaliações`;
+  document.querySelector("#quickRating").textContent = `${formatRatingLabel(stats)} · ${formatReviewCount(stats.count)}`;
   document.querySelector("#quickMargin").textContent = "Produto selecionado";
   document.querySelector("#quickPrice").textContent = money(product.price);
   document.querySelector("#quickAdd").dataset.add = product.id;
@@ -537,6 +524,56 @@ function openQuickView(productId) {
 function closeQuickView() {
   quickView.classList.remove("open");
   quickView.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+function renderReviewList(product) {
+  if (!reviewList) return;
+  const reviews = getProductReviews(product.id);
+  const stats = getReviewStats(product);
+
+  reviewList.innerHTML = `
+    <div class="review-summary">
+      <strong>${formatRatingLabel(stats)}</strong>
+      <span>${formatReviewCount(stats.count)}</span>
+    </div>
+    ${
+      reviews.length
+        ? reviews
+            .map(
+              (review) => `
+                <article class="review-item">
+                  <div>
+                    <strong>${escapeHtml(review.name || "Cliente")}</strong>
+                    <span>${Number(review.rating).toFixed(1)} / 5 · ${escapeHtml(dateFormatter.format(new Date(review.date)))}</span>
+                  </div>
+                  <p>${escapeHtml(review.comment)}</p>
+                </article>
+              `
+            )
+            .join("")
+        : '<p class="empty-reviews">Ainda não há avaliações deste produto.</p>'
+    }
+  `;
+}
+
+function openReviewView(productId) {
+  const product = products.find((item) => item.id === productId);
+  if (!product || !reviewView || !reviewForm) return;
+
+  reviewForm.reset();
+  reviewProductId.value = product.id;
+  reviewProductName.textContent = `${product.name} · ${product.sku}`;
+  renderReviewList(product);
+  reviewView.classList.add("open");
+  reviewView.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeReviewView() {
+  if (!reviewView) return;
+  reviewView.classList.remove("open");
+  reviewView.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
 }
 
@@ -592,7 +629,7 @@ function submitManualOrder(event) {
   const data = Object.fromEntries(new FormData(manualCheckoutForm).entries());
   const orderId = `MLA-${Date.now().toString().slice(-6)}`;
   const address = `${data.address}, ${data.city} - ${data.state}, CEP ${data.zip}`;
-  const safeItems = items.replace(/\n/g, "<br>");
+  const safeItems = escapeHtml(items).replace(/\n/g, "<br>");
   const storeMessage = buildStoreOrderMessage(orderId, data);
   const storeOrderUrl = `https://wa.me/${storeOrderPhone}?text=${encodeURIComponent(storeMessage)}`;
 
@@ -609,17 +646,55 @@ function submitManualOrder(event) {
 
 }
 
+function submitReview(event) {
+  event.preventDefault();
+  if (!reviewForm || !reviewProductId) return;
+
+  const data = new FormData(reviewForm);
+  const productId = reviewProductId.value;
+  const product = products.find((item) => item.id === productId);
+  if (!product) return;
+
+  const rating = Math.min(5, Math.max(1, Number(data.get("rating")) || 5));
+  const name = cleanProductText(data.get("name")).slice(0, 40) || "Cliente";
+  const comment = cleanProductText(data.get("comment")).slice(0, 240);
+  if (!comment) return;
+
+  const store = readReviewStore();
+  const productReviews = Array.isArray(store[productId]) ? store[productId] : [];
+  store[productId] = [
+    {
+      rating,
+      name,
+      comment,
+      date: new Date().toISOString()
+    },
+    ...productReviews
+  ].slice(0, 40);
+
+  if (!writeReviewStore(store)) return;
+
+  reviewForm.reset();
+  reviewProductId.value = productId;
+  renderReviewList(product);
+  renderProducts();
+  updateStoreHighlights();
+}
+
 document.addEventListener("click", (event) => {
   const addButton = event.target.closest("[data-add]");
   const quickButton = event.target.closest("[data-quick]");
+  const reviewButton = event.target.closest("[data-review]");
   const categoryButton = event.target.closest("[data-category]");
   const quantityButton = event.target.closest("[data-quantity]");
   const removeButton = event.target.closest("[data-remove]");
   const closeModal = event.target.closest("[data-close-modal]");
   const closeCheckoutButton = event.target.closest("[data-close-checkout]");
+  const closeReviewButton = event.target.closest("[data-close-review]");
 
   if (addButton) addToCart(addButton.dataset.add);
   if (quickButton) openQuickView(quickButton.dataset.quick);
+  if (reviewButton) openReviewView(reviewButton.dataset.review);
   if (categoryButton) {
     state.category = categoryButton.dataset.category;
     renderCategories();
@@ -631,6 +706,7 @@ document.addEventListener("click", (event) => {
   if (removeButton) removeItem(removeButton.dataset.remove);
   if (closeModal) closeQuickView();
   if (closeCheckoutButton) closeCheckout();
+  if (closeReviewButton) closeReviewView();
 });
 
 searchInput.addEventListener("input", (event) => {
@@ -648,12 +724,14 @@ document.querySelector("#closeCart").addEventListener("click", closeCart);
 document.querySelector("#closeCartBackdrop").addEventListener("click", closeCart);
 document.querySelector("#checkoutButton").addEventListener("click", openCheckout);
 manualCheckoutForm.addEventListener("submit", submitManualOrder);
+if (reviewForm) reviewForm.addEventListener("submit", submitReview);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeCart();
     closeQuickView();
     closeCheckout();
+    closeReviewView();
   }
 });
 
@@ -661,6 +739,7 @@ async function initStore() {
   await loadProductsFromCsv();
   renderCategories();
   renderProducts();
+  updateStoreHighlights();
   renderCart();
 }
 
@@ -674,6 +753,7 @@ async function refreshProductsFromCsv() {
 
   renderCategories();
   renderProducts();
+  updateStoreHighlights();
   renderCart();
 }
 
