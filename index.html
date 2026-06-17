@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Loja profissional de achadinhos com catálogo, carrinho, atendimento e entrega acompanhada."
+    />
+    <title>meli.la achadinhos | Achadinhos para sua rotina</title>
+    <link rel="icon" href="assets/img/meli-la-logo.png" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="announcement" aria-label="Avisos da loja">
+      <div class="announcement-track">
+        <span>Novidades úteis para casa, beleza, tecnologia e pets</span>
+        <span>Atendimento pelo WhatsApp para confirmar seu pedido</span>
+        <span>Você recebe o rastreio assim que o envio for postado</span>
+        <span>Escolha seus achadinhos e envie o pedido em poucos minutos</span>
+        <span>Novidades úteis para casa, beleza, tecnologia e pets</span>
+        <span>Atendimento pelo WhatsApp para confirmar seu pedido</span>
+        <span>Você recebe o rastreio assim que o envio for postado</span>
+        <span>Escolha seus achadinhos e envie o pedido em poucos minutos</span>
+      </div>
+    </div>
+
+    <header class="site-header" id="topo">
+      <a class="brand" href="#topo" aria-label="meli.la achadinhos">
+        <img src="assets/img/meli-la-logo.png" alt="Logo meli.la achadinhos" />
+        <span>meli.la</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#operacao">Como funciona</a>
+        <a href="#faq">Dúvidas</a>
+      </nav>
+
+      <div class="header-actions">
+        <label class="search-box" for="searchInput">
+          <span>Buscar</span>
+          <input id="searchInput" type="search" placeholder="Produto, categoria ou SKU" />
+        </label>
+        <button class="icon-button" id="openCart" type="button" aria-label="Abrir carrinho">
+          <span class="cart-mark" aria-hidden="true"></span>
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">Achadinhos selecionados para você</p>
+          <h1 id="heroTitle">Achadinhos úteis para facilitar sua rotina.</h1>
+          <p class="hero-lead">
+            Produtos úteis, bonitos e com preço inteligente para casa, beleza,
+            tecnologia e rotina. Escolha seus favoritos, preencha a entrega e
+            acompanhe seu pedido até receber o rastreio.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#catalogo">Ver produtos</a>
+            <a class="button secondary" href="#operacao">Como comprar</a>
+          </div>
+
+          <div class="proof-row" aria-label="Indicadores da loja">
+            <div>
+              <strong>8</strong>
+              <span>produtos na vitrine</span>
+            </div>
+            <div>
+              <strong>4.8</strong>
+              <span>avaliação média</span>
+            </div>
+            <div>
+              <strong>24h</strong>
+              <span>atendimento rápido</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-display" aria-label="Destaque da loja">
+          <div class="hero-topline">
+            <span>Destaque da semana</span>
+            <span>Prático para a rotina</span>
+          </div>
+          <img src="assets/img/product-freshgo.svg" alt="Liquidificador portátil USB 380 ml" />
+          <div class="hero-product">
+            <div>
+              <h2>Liquidificador Portátil USB 380 ml</h2>
+              <p>Copo leve, recarregável e prático para bebidas rápidas.</p>
+            </div>
+            <strong>R$ 89,90</strong>
+          </div>
+          <div class="hero-mini-trust">
+            <span>Atendimento próximo</span>
+            <span>Pedido rastreado</span>
+            <span>Compra simples</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="promo-band" aria-label="Destaques comerciais">
+        <div>
+          <p class="eyebrow">Seleção da semana</p>
+          <h2>Itens úteis para casa, beleza, tecnologia e pets em uma compra simples.</h2>
+        </div>
+        <a class="button primary" href="#catalogo">Comprar agora</a>
+      </section>
+
+      <section class="flow-strip" aria-label="Como comprar">
+        <div>
+          <span class="flow-step">01</span>
+          <strong>Escolha</strong>
+          <p>Veja os produtos e adicione seus achadinhos favoritos ao carrinho.</p>
+        </div>
+        <div>
+          <span class="flow-step">02</span>
+          <strong>Entrega</strong>
+          <p>Preencha seus dados para receber o pedido no endereço certo.</p>
+        </div>
+        <div>
+          <span class="flow-step">03</span>
+          <strong>Confirmação</strong>
+          <p>Envie o resumo do pedido e receba a confirmação pelo atendimento.</p>
+        </div>
+        <div>
+          <span class="flow-step">04</span>
+          <strong>Rastreio</strong>
+          <p>Receba o código de acompanhamento assim que o envio for postado.</p>
+        </div>
+      </section>
+
+      <section class="catalog-shell" id="catalogo" aria-labelledby="catalogTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Catálogo</p>
+            <h2 id="catalogTitle">Produtos escolhidos para deixar sua rotina mais prática.</h2>
+          </div>
+          <div class="catalog-tools">
+            <div class="category-tabs" id="categoryTabs" aria-label="Filtros de categoria"></div>
+            <label class="sort-select">
+              <span>Ordenar</span>
+              <select id="sortSelect">
+                <option value="featured">Selecionados</option>
+                <option value="price-asc">Menor preço</option>
+                <option value="price-desc">Maior preço</option>
+                <option value="rating">Melhor avaliação</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="benefits" id="beneficios" aria-labelledby="benefitsTitle">
+        <div class="section-heading compact">
+          <p class="eyebrow">Confiança</p>
+          <h2 id="benefitsTitle">Compre com tranquilidade do pedido ao rastreio.</h2>
+        </div>
+        <div class="benefit-grid">
+          <article>
+            <span class="benefit-icon shield" aria-hidden="true"></span>
+            <h3>Compra protegida</h3>
+            <p>Políticas claras de troca, prazo, suporte e rastreio para você comprar com mais tranquilidade.</p>
+          </article>
+          <article>
+            <span class="benefit-icon route" aria-hidden="true"></span>
+            <h3>Rastreio organizado</h3>
+            <p>Assim que o envio for postado, você recebe o código para acompanhar o pedido.</p>
+          </article>
+          <article>
+            <span class="benefit-icon stack" aria-hidden="true"></span>
+            <h3>Curadoria cuidadosa</h3>
+            <p>Produtos selecionados pelo potencial de uso, preço e apelo no dia a dia.</p>
+          </article>
+          <article>
+            <span class="benefit-icon chat" aria-hidden="true"></span>
+            <h3>Atendimento próximo</h3>
+            <p>Envie seu pedido para a equipe conferir os dados e orientar os próximos passos.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="operation-panel" id="operacao" aria-labelledby="operacaoTitle">
+        <div class="operation-copy">
+          <p class="eyebrow">Como funciona</p>
+          <h2 id="operacaoTitle">Você compra online e recebe acompanhamento até o rastreio.</h2>
+          <p>
+            Depois de escolher os produtos, você preenche seus dados de entrega,
+            envia o resumo do pedido para nosso
+            atendimento confirmar os próximos passos.
+          </p>
+          <a class="button secondary light" href="#catalogo">Escolher produtos</a>
+        </div>
+
+        <div class="ops-board" aria-label="Checklist de operação">
+          <div class="ops-row">
+            <span>1</span>
+            <div>
+              <strong>Monte seu carrinho</strong>
+              <p>Adicione os produtos que combinam com sua rotina.</p>
+            </div>
+          </div>
+          <div class="ops-row">
+            <span>2</span>
+            <div>
+              <strong>Informe a entrega</strong>
+              <p>Preencha endereço e contato para receber a confirmação.</p>
+            </div>
+          </div>
+          <div class="ops-row">
+            <span>3</span>
+            <div>
+              <strong>Acompanhe o envio</strong>
+              <p>Assim que o pedido for postado, você recebe o rastreio.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq" id="faq" aria-labelledby="faqTitle">
+        <div class="section-heading compact">
+          <p class="eyebrow">Dúvidas frequentes</p>
+          <h2 id="faqTitle">Tire suas dúvidas antes de comprar.</h2>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>Qual é o prazo de entrega?</summary>
+            <p>
+              O prazo pode variar conforme o produto e a região de entrega.
+              Após a postagem, você recebe o código para acompanhar o envio.
+            </p>
+          </details>
+          <details>
+            <summary>Os produtos têm garantia?</summary>
+            <p>
+              Sim. A vitrine já prevê comunicação de troca e suporte. Ajuste o texto
+              conforme a sua política comercial e as regras da plataforma usada.
+            </p>
+          </details>
+          <details>
+            <summary>Como o pedido é finalizado?</summary>
+            <p>
+              O carrinho abre um formulário de entrega.
+              Depois, você envia o resumo do pedido para nosso atendimento confirmar.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Carrinho">
+      <div class="drawer-backdrop" id="closeCartBackdrop"></div>
+      <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+        <div class="drawer-header">
+          <div>
+            <p class="eyebrow">Seu pedido</p>
+            <h2 id="cartTitle">Carrinho</h2>
+          </div>
+          <button class="icon-button close" id="closeCart" type="button" aria-label="Fechar carrinho"></button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-empty" id="cartEmpty">
+          <strong>Seu carrinho está vazio.</strong>
+          <p>Escolha alguns achadinhos para montar o pedido.</p>
+        </div>
+        <div class="cart-summary">
+          <div>
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">R$ 0,00</strong>
+          </div>
+          <p>Confira os itens, preencha a entrega e envie o pedido para atendimento.</p>
+          <button class="button primary full" id="checkoutButton" type="button">
+            Preencher dados e pagar
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="quick-view" id="quickView" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="quickTitle">
+        <button class="icon-button close modal-close" type="button" data-close-modal aria-label="Fechar"></button>
+        <img id="quickImage" src="assets/img/product-freshgo.svg" alt="Produto em destaque" />
+        <div class="quick-copy">
+          <p class="eyebrow" id="quickSku"></p>
+          <h2 id="quickTitle"></h2>
+          <p id="quickDescription"></p>
+          <div class="quick-meta">
+            <span id="quickRating"></span>
+            <span id="quickMargin"></span>
+          </div>
+          <strong class="quick-price" id="quickPrice"></strong>
+          <button class="button primary full" id="quickAdd" type="button">Adicionar ao carrinho</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="checkout-view" id="checkoutView" aria-hidden="true">
+      <div class="modal-backdrop" data-close-checkout></div>
+      <article class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+        <button class="icon-button close modal-close" type="button" data-close-checkout aria-label="Fechar"></button>
+        <div class="checkout-copy">
+          <p class="eyebrow">Finalize seu pedido</p>
+          <h2 id="checkoutTitle">Dados de entrega</h2>
+          <p>
+            Preencha seus dados para que nossa equipe confirme o pedido pelo
+            WhatsApp da loja: +55 41 98468-4382.
+          </p>
+
+          <ol class="manual-steps">
+            <li>Você envia os dados de entrega.</li>
+            <li>Nossa equipe confirma o pedido.</li>
+            <li>Os dados são conferidos com segurança.</li>
+            <li>Seu pedido é preparado para envio.</li>
+            <li>Você recebe o código de rastreio.</li>
+          </ol>
+        </div>
+
+        <form class="checkout-form" id="manualCheckoutForm">
+          <div class="form-grid">
+            <label>
+              Nome completo
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>
+              E-mail
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              WhatsApp
+              <input name="phone" autocomplete="tel" required />
+            </label>
+            <label>
+              CEP
+              <input name="zip" autocomplete="postal-code" required />
+            </label>
+            <label class="wide">
+              Endereço
+              <input name="address" autocomplete="street-address" required />
+            </label>
+            <label>
+              Cidade
+              <input name="city" autocomplete="address-level2" required />
+            </label>
+            <label>
+              Estado
+              <input name="state" autocomplete="address-level1" required />
+            </label>
+            <label class="wide">
+              Complemento
+              <input name="notes" />
+            </label>
+          </div>
+          <button class="button primary full" type="submit">Gerar resumo do pedido</button>
+          <div class="order-result" id="orderResult" aria-live="polite"></div>
+        </form>
+      </article>
+    </div>
+
+    <footer class="site-footer">
+      <div>
+        <img src="assets/img/meli-la-logo.png" alt="" />
+        <p>meli.la achadinhos</p>
+      </div>
+      <p>
+        Achadinhos selecionados com atendimento próximo, pedido acompanhado e
+        rastreio enviado após a postagem.
+      </p>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

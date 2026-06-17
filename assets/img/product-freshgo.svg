@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edf4fb"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#245a9d" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#245a9d" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="26" stdDeviation="20" flood-color="#102033" flood-opacity=".18"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#102033" flood-opacity=".14"/>
+    </filter>
+  </defs>
+  <rect width="900" height="700" fill="url(#bg)"/>
+  <circle cx="450" cy="310" r="260" fill="url(#glow)"/>
+  <ellipse cx="450" cy="606" rx="255" ry="42" fill="#102033" opacity=".08"/>
+  
+  <g filter="url(#shadow)" transform="translate(265 95) rotate(-8 185 250)">
+    <rect x="98" y="50" width="215" height="92" rx="44" fill="#f7fbff" stroke="#d9e4ef" stroke-width="8"/>
+    <rect x="122" y="126" width="178" height="292" rx="40" fill="#ffffff" stroke="#d8e7f2" stroke-width="8"/>
+    <rect x="144" y="184" width="132" height="168" rx="26" fill="#dff4ff" opacity=".72" stroke="#b7d8ea" stroke-width="5"/>
+    <circle cx="180" cy="252" r="23" fill="#f7c517"/>
+    <circle cx="216" cy="285" r="26" fill="#ff7b56"/>
+    <circle cx="244" cy="236" r="22" fill="#71bf64"/>
+    <path d="M170 338c40 34 82 32 118-4" fill="none" stroke="#245a9d" stroke-width="8" stroke-linecap="round"/>
+    <rect x="108" y="402" width="206" height="94" rx="42" fill="#245a9d"/>
+    <rect x="146" y="430" width="130" height="24" rx="12" fill="#ffffff" opacity=".85"/>
+    <circle cx="211" cy="80" r="19" fill="#f7c517"/>
+    <path d="M313 92c52 8 75 41 74 83" fill="none" stroke="#72a1cf" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <path d="M184 454c36-21 71-20 104 3" fill="none" stroke="#f7c517" stroke-width="18" stroke-linecap="round" opacity=".75"/>
+  
+</svg>

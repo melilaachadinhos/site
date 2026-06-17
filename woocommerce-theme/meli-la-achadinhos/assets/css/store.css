@@ -1,0 +1,463 @@
+:root {
+  --meli-ink: #14213d;
+  --meli-muted: #5d6b82;
+  --meli-line: #dbe3ef;
+  --meli-paper: #ffffff;
+  --meli-soft: #f6f8fb;
+  --meli-blue: #245a9d;
+  --meli-blue-dark: #183f72;
+  --meli-yellow: #f7c518;
+  --meli-mint: #2fbf9f;
+  --meli-shadow: 0 22px 70px rgba(20, 33, 61, 0.13);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--meli-ink);
+  background: linear-gradient(180deg, #fffdf5 0%, #f7fbff 42%, #ffffff 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.meli-announcement {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--meli-blue-dark);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.meli-announcement span {
+  padding: 0.68rem 1rem;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.meli-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto minmax(260px, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.85rem clamp(1rem, 3vw, 3rem);
+  border-bottom: 1px solid rgba(219, 227, 239, 0.78);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.meli-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--meli-blue);
+  font-size: 1.18rem;
+  font-weight: 950;
+}
+
+.meli-brand img,
+.meli-footer img {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--meli-line);
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+.meli-nav {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.8rem, 2vw, 1.8rem);
+  color: var(--meli-muted);
+  font-size: 0.95rem;
+  font-weight: 850;
+}
+
+.meli-nav ul {
+  display: contents;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.meli-nav a:hover,
+.meli-nav a:focus {
+  color: var(--meli-blue);
+}
+
+.meli-cart {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--meli-line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--meli-blue);
+}
+
+.meli-cart-icon {
+  width: 18px;
+  height: 15px;
+  border: 2px solid currentColor;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+}
+
+.meli-cart strong {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: grid;
+  place-items: center;
+  min-width: 23px;
+  height: 23px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: var(--meli-yellow);
+  color: var(--meli-blue-dark);
+  font-size: 0.75rem;
+}
+
+.meli-hero,
+.meli-flow,
+.meli-products,
+.meli-manual,
+.meli-page,
+.meli-shop,
+.meli-footer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-right: clamp(1rem, 3vw, 3rem);
+  padding-left: clamp(1rem, 3vw, 3rem);
+}
+
+.meli-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(2rem, 6vw, 5.5rem);
+  padding-bottom: 2rem;
+}
+
+.meli-eyebrow {
+  margin: 0 0 0.7rem;
+  color: var(--meli-blue);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.meli-hero h1,
+.meli-section-heading h2,
+.meli-manual h2,
+.meli-content h1 {
+  margin: 0 0 1rem;
+  color: var(--meli-ink);
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.meli-hero h1 {
+  font-size: clamp(2.65rem, 6vw, 5.2rem);
+}
+
+.meli-section-heading h2,
+.meli-manual h2,
+.meli-content h1 {
+  font-size: clamp(1.85rem, 3.4vw, 3rem);
+}
+
+.meli-hero p,
+.meli-flow p,
+.meli-manual p,
+.meli-content,
+.meli-footer p {
+  color: var(--meli-muted);
+  line-height: 1.66;
+}
+
+.meli-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+.meli-button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.82rem 1.08rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.meli-button.primary,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+  background: var(--meli-blue);
+  color: #ffffff;
+}
+
+.meli-button.secondary {
+  border-color: rgba(36, 90, 157, 0.24);
+  background: #ffffff;
+  color: var(--meli-blue);
+}
+
+.meli-hero-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--meli-line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--meli-shadow);
+}
+
+.meli-hero-card img {
+  width: 100%;
+  aspect-ratio: 1 / 0.8;
+  object-fit: contain;
+}
+
+.meli-hero-card span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--meli-muted);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.meli-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.meli-flow article,
+.meli-manual,
+.meli-content,
+.woocommerce ul.products li.product {
+  border: 1px solid var(--meli-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.meli-flow article {
+  min-height: 152px;
+  padding: 1rem;
+}
+
+.meli-flow span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.85rem;
+  border-radius: 8px;
+  background: var(--meli-yellow);
+  color: var(--meli-blue-dark);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.meli-products,
+.meli-manual,
+.meli-page,
+.meli-shop {
+  padding-top: clamp(3rem, 7vw, 6.5rem);
+}
+
+.meli-section-heading {
+  max-width: 760px;
+  margin-bottom: 1.3rem;
+}
+
+.woocommerce ul.products {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.woocommerce ul.products::before,
+.woocommerce ul.products::after {
+  display: none;
+}
+
+.woocommerce ul.products li.product {
+  float: none;
+  width: auto;
+  margin: 0;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(20, 33, 61, 0.07);
+}
+
+.woocommerce ul.products li.product a img {
+  aspect-ratio: 1 / 0.86;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  object-fit: cover;
+  background: var(--meli-soft);
+}
+
+.woocommerce-loop-product__title,
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .button {
+  margin-right: 0.95rem;
+  margin-left: 0.95rem;
+}
+
+.woocommerce-loop-product__title {
+  min-height: 52px;
+  color: var(--meli-ink);
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+
+.woocommerce ul.products li.product .price {
+  color: var(--meli-blue);
+  font-size: 1.2rem;
+  font-weight: 950;
+}
+
+.woocommerce ul.products li.product .button {
+  width: calc(100% - 1.9rem);
+  margin-bottom: 0.95rem;
+}
+
+.meli-badge,
+.woocommerce span.onsale {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  z-index: 2;
+  min-height: auto;
+  min-width: auto;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  background: var(--meli-blue-dark);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.meli-manual {
+  display: grid;
+  margin-top: clamp(3rem, 7vw, 6.5rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--meli-blue-dark);
+}
+
+.meli-manual h2,
+.meli-manual p,
+.meli-manual .meli-eyebrow {
+  color: #ffffff;
+}
+
+.meli-notice {
+  padding: 1rem;
+  border: 1px solid var(--meli-line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--meli-muted);
+}
+
+.meli-content {
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.meli-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding-top: clamp(3rem, 7vw, 5rem);
+  padding-bottom: 2rem;
+}
+
+.meli-footer div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--meli-blue);
+}
+
+@media (max-width: 1080px) {
+  .meli-header {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .meli-nav {
+    display: none;
+  }
+
+  .meli-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .meli-flow,
+  .woocommerce ul.products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .meli-announcement,
+  .meli-flow,
+  .woocommerce ul.products {
+    grid-template-columns: 1fr;
+  }
+
+  .meli-brand span {
+    display: none;
+  }
+
+  .meli-hero h1 {
+    font-size: clamp(2.35rem, 13vw, 3.7rem);
+  }
+
+  .meli-actions,
+  .meli-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .meli-button {
+    width: 100%;
+  }
+}

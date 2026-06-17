@@ -1,0 +1,2 @@
+pedido_id,data_pedido,cliente,telefone,produto_sku,quantidade,valor_pedido_brl,custo_produto_brl,frete_fornecedor_brl,lucro_estimado_brl,status_confirmacao,status_pedido,fornecedor,numero_pedido_fornecedor,codigo_rastreio,prazo_prometido,observacoes
+MLA-0001,AAAA-MM-DD,NOME_CLIENTE,TELEFONE,MLA-MAN-FRESHGO-01,1,89.90,42.00,0.00,47.90,aguardando confirmacao,novo pedido,PREENCHER,PREENCHER,PREENCHER,15 a 25 dias,Pedido exemplo
